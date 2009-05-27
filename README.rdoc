@@ -1,0 +1,20 @@
+= Moonshine_Memcached
+
+=== A plugin for Moonshine[http://github.com/railsmachine/moonshine]
+
+A plugin for installing and managing memcached.
+
+Look through the memcached.conf template to see available options. No client gem
+is installed unless specified, the default is the version bundled with Rails.
+
+=== Instructions
+
+* <tt>script/plugin install git://github.com/railsmachine/moonshine_memcached.git</tt>
+* Configure settings if needed
+    configure(:memcached => { 
+      :max_memory => '256', 
+      :client => '1.7.2' 
+    })
+* Include the plugin and recipe(s) in your Moonshine manifest
+    plugin :memcached
+    recipe :memcached
