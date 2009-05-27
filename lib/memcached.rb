@@ -15,7 +15,9 @@ module Memcached
     
     file '/etc/memcached.conf', 
       :content => template(File.join(File.dirname(__FILE__), '..', 'templates', 'memcached.conf'), binding),
-      :mode => '644'
+      :mode => '644',
+      :require => package('memcached'),
+      :notify => service('memcached')
     
     # install client gem if specified. otherwise, use version bundled with rails.
     if options[:client]
