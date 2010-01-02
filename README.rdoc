@@ -4,8 +4,9 @@
 
 A plugin for installing and managing memcached.
 
-Look through the memcached.conf template to see available options. No client gem
-is installed unless specified, the default is the version bundled with Rails.
+Look through the <tt>memcached.conf.erb</tt> template to see available options.
+No client gem is installed unless specified, the default is the version bundled
+with Rails.
 
 === Instructions
 

@@ -14,7 +14,7 @@ module Memcached
     service 'memcached', :ensure => :running, :enable => true, :require => package('memcached')
     
     file '/etc/memcached.conf', 
-      :content => template(File.join(File.dirname(__FILE__), '..', 'templates', 'memcached.conf'), binding),
+      :content => template(File.join(File.dirname(__FILE__), '..', 'templates', 'memcached.conf.erb'), binding),
       :mode => '644',
       :require => package('memcached'),
       :notify => service('memcached')
