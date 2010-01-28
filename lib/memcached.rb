@@ -10,8 +10,10 @@ module Memcached
   #  plugin :memcached
   #  recipe :memcached
   def memcached(options = {})
+    options = { :enable_on_boot => true }.merge(options)
+
     package 'memcached', :ensure => :installed
-    service 'memcached', :ensure => :running, :enable => true, :require => package('memcached')
+    service 'memcached', :ensure => :running, :enable => options[:enable_on_boot], :require => package('memcached')
     
     file '/etc/memcached.conf', 
       :content => template(File.join(File.dirname(__FILE__), '..', 'templates', 'memcached.conf.erb'), binding),
@@ -21,7 +23,7 @@ module Memcached
     
     # install client gem if specified. otherwise, use version bundled with rails.
     if options[:client]
-      gem 'memcache-client', :require => package('memcached'), :ensure => options[:client]
+      gem 'memcache-client', :require => package('memcached'), :version => options[:client]
     end
     
   end
