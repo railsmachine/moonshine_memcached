@@ -1,3 +1,3 @@
-require "#{File.dirname(__FILE__)}/../lib/memcached.rb"
+require "#{File.dirname(__FILE__)}/../lib/moonshine/memcached.rb"
 
-include Memcached
+include Moonshine::Memcached
