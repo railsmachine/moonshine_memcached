@@ -27,5 +27,4 @@ plugin is a handy way to do this.
       :enable_on_boot => false  # maybe you want god to start it instead of init
     })
 * Include the plugin and recipe(s) in your Moonshine manifest:
-    plugin :memcached
     recipe :memcached
