@@ -10,7 +10,7 @@ module Moonshine
     #  recipe :memcached
 
     def memcached(options = {})
-      options = { :enable_on_boot => true }.merge(options)
+      options[:enable_on_boot] = true if options[:enable_on_boot].nil?
 
       exec 'apt-get install -q -y --force-yes memcached',
         :before => service('memcached'),
