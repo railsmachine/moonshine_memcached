@@ -1,0 +1,5 @@
+<% if options[:enabled].nil? %>
+ENABLE_MEMCACHED=yes
+<% else %>
+ENABLE_MEMCACHED=<%= options[:enabled] ? 'yes' : 'no' %>
+<% end %>

@@ -1,7 +1,7 @@
 require File.join(File.dirname(__FILE__), 'spec_helper.rb')
 
 class MemcachedManifest < Moonshine::Manifest::Rails
-  plugin :memcached
+  include Moonshine::Memcached
 end
 
 describe "A manifest with the Memcached plugin" do
@@ -28,6 +28,15 @@ describe "A manifest with the Memcached plugin" do
 
   it "should install the memcached configuration file" do
     @manifest.files['/etc/memcached.conf'].should_not be(nil)
+  end
+
+  it "should enable memcached in by default" do
+    @manifest.files['/etc/default/memcached'].content.should =~ /ENABLE_MEMCACHED=yes/
+  end
+
+  it "should disable memcached if set" do
+    @manifest.memcached(:enabled => false)
+    @manifest.files['/etc/default/memcached'].content.should =~ /ENABLE_MEMCACHED=no/
   end
 
   it "should install the Ruby client library for memcached iff the option is given" do

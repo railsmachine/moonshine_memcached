@@ -19,6 +19,12 @@ module Moonshine
 
       service 'memcached', :ensure => :running, :enable => options[:enable_on_boot], :require => exec('memcached package')
 
+      file '/etc/default/memcached',
+        :content => template(File.join(File.dirname(__FILE__), '..', '..', 'templates', 'default.erb'), binding),
+        :mode => '644',
+        :require => exec('memcached package'),
+        :notify => service('memcached')
+
       file '/etc/memcached.conf',
         :content => template(File.join(File.dirname(__FILE__), '..', '..', 'templates', 'memcached.conf.erb'), binding),
         :mode => '644',
