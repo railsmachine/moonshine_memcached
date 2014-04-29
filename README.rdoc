@@ -28,3 +28,6 @@ plugin is a handy way to do this.
     })
 * Include the plugin and recipe(s) in your Moonshine manifest:
     recipe :memcached
+
+
+Unless otherwise specified, all content copyright (C) 2014, Rails Machine
